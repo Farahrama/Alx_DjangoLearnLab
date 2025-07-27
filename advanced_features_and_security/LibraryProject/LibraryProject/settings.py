@@ -26,19 +26,25 @@ SECRET_KEY = 'django-insecure-hbl(zio8uo&)q@#ejblfcs0(kx^vqur(w!f1t&c#k96&sm#r#5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Enforce HTTPS for cookies (only works if you're serving over HTTPS)
-CSRF_COOKIE_SECURE = True
+# 2. Only allow your domain(s)
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  
+
+# 3. Enforce HTTPS
+SECURE_SSL_REDIRECT = True  
+
+# 4. HTTP Strict Transport Security
+SECURE_HSTS_SECONDS = 31536000  
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# 5. Secure cookies
 SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-# Prevent MIME type sniffing
+# 6. Protection headers
+X_FRAME_OPTIONS = 'DENY'  
 SECURE_CONTENT_TYPE_NOSNIFF = True
-
-# Enable XSS protection in browsers
 SECURE_BROWSER_XSS_FILTER = True
-
-# Prevent your site from being embedded in a frame
-X_FRAME_OPTIONS = 'DENY'
-
 
 ALLOWED_HOSTS = []
 
@@ -137,3 +143,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+## Security Enhancements Implemented
+
+#- Enforced HTTPS with `SECURE_SSL_REDIRECT`
+#- Activated HTTP Strict Transport Security via `SECURE_HSTS_*`
+#- Enforced secure cookies for session and CSRF
+#- Enabled browser protections via headers: `X_FRAME_OPTIONS`, `SECURE_CONTENT_TYPE_NOSNIFF`, `SECURE_BROWSER_XSS_FILTER`
+#- Disabled DEBUG in production and restricted `ALLOWED_HOSTS`

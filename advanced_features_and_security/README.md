@@ -19,3 +19,7 @@ Used `@permission_required()` decorator to restrict actions.
 1. Create users.
 2. Assign to one of the groups.
 3. Login and test access to views.
+Deployment Notes:
+- Configure Nginx or Apache to listen on port 443
+- Use Certbot with Let's Encrypt to generate SSL certificates
+- Forward all HTTP (port 80) traffic to HTTPS (port 443)
