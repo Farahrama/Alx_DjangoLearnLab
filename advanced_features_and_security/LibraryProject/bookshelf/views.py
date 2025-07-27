@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book
-
+from .forms import ExampleForm
+from django.http import HttpResponseForbidden
 
 @permission_required('bookshelf.can_view', raise_exception=True)
 def book_list(request):
