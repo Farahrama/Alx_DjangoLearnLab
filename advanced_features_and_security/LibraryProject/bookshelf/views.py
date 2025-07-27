@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book
 
+
 @permission_required('bookshelf.can_view', raise_exception=True)
 def book_list(request):
     books = Book.objects.all()
@@ -23,3 +24,7 @@ def book_edit(request, book_id):
 def book_delete(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
 # Create your views here.
+def test_form_view(request):
+    if request.method == "POST":
+        print("Form submitted!", request.POST.get("username"))
+    return render(request, "form_example.html")
