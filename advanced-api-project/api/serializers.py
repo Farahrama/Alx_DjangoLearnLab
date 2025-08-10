@@ -41,3 +41,4 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = ['name', 'books']
+        # 'fields' defines the fields that will be included in the serialized output.
