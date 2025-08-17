@@ -5,8 +5,8 @@ from .models import Post, Comment
 from taggit.forms import TagWidget
 
 
-# Form for new users
-class RegisterForm(UserCreationForm):
+# User Creation Form
+class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -14,19 +14,27 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2"]
 
 
-# Form for blog posts
+# Post Form
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(required=False, help_text="Separate with commas")
+    tags = forms.CharField(required=False, help_text="Comma-separated tags")
 
     class Meta:
         model = Post
-        fields = ["post_title", "body", "tags"]  # adjusted names from models.py
+        fields = ["title", "content", "tags"]
         widgets = {
             "tags": TagWidget(),
         }
 
 
+# Comment Form
 class CommentForm(forms.ModelForm):
+    content = forms.CharField(   # <<< ضفناها كـ explicit
+        widget=forms.Textarea(attrs={"rows": 3, "placeholder": "Write your comment..."}),
+        max_length=500,
+        required=True,
+        help_text="Enter your comment here."
+    )
+
     class Meta:
         model = Comment
-        fields = ["text"]
+        fields = ["content"]
