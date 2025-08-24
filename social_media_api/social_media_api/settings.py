@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^i!8n@%(thn87-52782ci15a%8zrph=m#yzlcqm!83m0a6+)0l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "posts",
     "notifications"
 ]
+
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 REST_FRAMEWORK = {
